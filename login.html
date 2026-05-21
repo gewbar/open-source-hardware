@@ -352,7 +352,7 @@ h1 {
 <span class="note username-check" id="usernameStatus">Choose a username. Goober is allowed for your founder account.</span>
 <input class="input" id="signupDisplayName" placeholder="Display name, example: Goober" maxlength="32" autocomplete="name" />
 <input class="input" id="signupPassword" placeholder="Password" type="password" maxlength="72" autocomplete="new-password" />
-<input class="input" id="signupPhone" placeholder="Phone number, example: +18175551234" autocomplete="tel" />
+<input class="input" id="signupPhone" placeholder="Phone number, must include +1, example: +19403279943" autocomplete="tel" />
 <div class="phone-row">
 <input class="input" id="signupCode" placeholder="SMS code" inputmode="numeric" autocomplete="one-time-code" disabled />
 <button class="button" id="sendCodeButton" type="button">Send code</button>
@@ -425,6 +425,8 @@ import {
   browserLocalPersistence
 } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
 import {
+
+try {
   getDatabase,
   ref,
   child,
@@ -504,12 +506,8 @@ function setCookie(name, value, days = 180) {
 }
 
 function getCookie(name) {
-  return document.cookie
-    .split("; ")
-    .find(row => row.startsWith(name + "="))
-    ?.split("=")[1]
-    ? decodeURIComponent(document.cookie.split("; ").find(row => row.startsWith(name + "=")).split("=")[1])
-    : "";
+  const row = document.cookie.split("; ").find(item => item.startsWith(name + "="));
+  return row ? decodeURIComponent(row.split("=")[1]) : "";
 }
 
 function normalizeUsername(value) {
@@ -605,10 +603,15 @@ async function getProfile(uid) {
   return snap.exists() ? snap.val() : null;
 }
 
+function updateCreateButton() {
+  const codeReady = signupCode.value.trim().length >= 4;
+  createAccountButton.disabled = !(confirmationResult && usernameAvailable && codeReady);
+}
+
 signupUsername.addEventListener("input", () => {
   clearTimeout(usernameCheckTimer);
   usernameAvailable = false;
-  createAccountButton.disabled = true;
+  updateCreateButton();
 
   const username = normalizeUsername(signupUsername.value);
   signupUsername.value = username;
@@ -628,12 +631,14 @@ signupUsername.addEventListener("input", () => {
       const snap = await get(child(ref(db), `usernames/${username}`));
       usernameAvailable = !snap.exists();
       usernameStatus.textContent = usernameAvailable ? "Username is available." : "Username is already taken.";
-      createAccountButton.disabled = !(confirmationResult && usernameAvailable);
+      updateCreateButton();
     } catch (error) {
       usernameStatus.textContent = error.message;
     }
   }, 350);
 });
+
+signupCode.addEventListener("input", updateCreateButton);
 
 function setupRecaptcha() {
   if (recaptchaVerifier) return recaptchaVerifier;
@@ -652,7 +657,9 @@ function setupRecaptcha() {
 sendCodeButton.addEventListener("click", async () => {
   const username = normalizeUsername(signupUsername.value);
   const password = signupPassword.value;
-  const number = signupPhone.value.trim();
+  let number = signupPhone.value.trim().replace(/[\s()-]/g, "");
+  if (/^\d{10}$/.test(number)) number = "+1" + number;
+  signupPhone.value = number;
 
   if (!validUsername(username)) {
     signupStatus.textContent = "Pick a valid username first.";
@@ -678,7 +685,7 @@ sendCodeButton.addEventListener("click", async () => {
     const verifier = setupRecaptcha();
     confirmationResult = await signInWithPhoneNumber(auth, number, verifier);
     signupCode.disabled = false;
-    createAccountButton.disabled = !usernameAvailable;
+    updateCreateButton();
     signupStatus.textContent = "Code sent. Enter it, then create your account.";
   } catch (error) {
     console.error(error);
@@ -758,7 +765,7 @@ createAccountButton.addEventListener("click", async () => {
 
     setCookie("gewbar_username", username);
     loginUsername.value = username;
-    signupStatus.textContent = "Account created. You are logged in.";
+    signupStatus.textContent = "Account created. You are logged in. Go back to the forum to post.";
     signupStatus.textContent = "Account created. You are logged in. Go back to the forum to post.";
   } catch (error) {
     console.error(error);
@@ -791,7 +798,7 @@ loginButton.addEventListener("click", async () => {
   try {
     await signInWithEmailAndPassword(auth, usernameToEmail(username), password);
     setCookie("gewbar_username", username);
-    loginStatus.textContent = "Logged in.";
+    loginStatus.textContent = "Logged in. Go back to the forum to post.";
     signupStatus.textContent = "Account created. You are logged in. Go back to the forum to post.";
   } catch (error) {
     console.error(error);
@@ -844,6 +851,11 @@ onAuthStateChanged(auth, async user => {
 });
 
 
+} catch (error) {
+  console.error(error);
+  const box = document.getElementById("firebaseStatus") || document.body;
+  if (box) box.textContent = "Script error: " + error.message;
+}
 </script>
 </body>
 </html>
