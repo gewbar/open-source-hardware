@@ -4,18 +4,23 @@
 <meta charset="utf-8" />
 <meta content="width=device-width, initial-scale=1.0" name="viewport" />
 <title>GEWBAR — Forum</title>
-<meta name="description" content="GEWBAR forum for FM-1 builders, CAD files, open-source modifications, and build notes." />
+<meta name="description" content="GEWBAR forum for FM-1 builders, CAD files, open-source modifications, build notes, and community posts." />
 <style>
 :root {
   --black: #000;
   --white: #fff;
   --soft: rgba(255,255,255,.68);
+  --muted: rgba(255,255,255,.46);
   --line: rgba(255,255,255,.14);
   --panel: rgba(255,255,255,.055);
+  --panel-2: rgba(255,255,255,.085);
 }
 
 * { box-sizing: border-box; }
-html { scroll-behavior: auto; scroll-padding-top: 86px; }
+html {
+  scroll-behavior: auto;
+  scroll-padding-top: 86px;
+}
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", "Helvetica Neue", Arial, sans-serif;
@@ -28,6 +33,9 @@ body {
 body.loaded { opacity: 1; }
 body.leaving { opacity: 0; }
 a { color: inherit; text-decoration: none; }
+button, input, textarea {
+  font: inherit;
+}
 
 .nav {
   position: fixed;
@@ -47,7 +55,7 @@ a { color: inherit; text-decoration: none; }
 }
 .nav.scrolled {
   height: 60px;
-  background: rgba(0,0,0,.86);
+  background: rgba(0,0,0,.88);
   border-bottom-color: rgba(255,255,255,.2);
 }
 .logo {
@@ -87,17 +95,14 @@ a { color: inherit; text-decoration: none; }
 .nav-links a.active::after { transform: scaleX(1); }
 
 .hero {
-  min-height: 82vh;
-  display: grid;
-  align-items: end;
-  padding: 130px clamp(22px, 6vw, 90px) 76px;
-  position: relative;
+  padding: 128px clamp(22px, 6vw, 90px) 54px;
   border-bottom: 1px solid var(--line);
+  position: relative;
 }
 .hero::before {
   content: "";
   position: absolute;
-  inset: -18% -20% auto auto;
+  inset: -30% -22% auto auto;
   width: 760px;
   height: 760px;
   background: radial-gradient(circle, rgba(255,255,255,.13), rgba(255,255,255,0) 62%);
@@ -114,25 +119,25 @@ a { color: inherit; text-decoration: none; }
 h1 {
   margin: 0;
   max-width: 960px;
-  font-size: clamp(54px, 8.6vw, 126px);
+  font-size: clamp(54px, 8.6vw, 124px);
   line-height: .92;
   letter-spacing: -.075em;
   font-weight: 700;
   animation: rise .85s .05s ease both;
 }
 .hero p {
-  max-width: 720px;
+  max-width: 760px;
   color: var(--soft);
   font-size: clamp(17px, 2vw, 22px);
   line-height: 1.5;
-  margin: 26px 0 0;
+  margin: 24px 0 0;
   animation: rise .85s .12s ease both;
 }
 .actions {
   display: flex;
   gap: 12px;
   flex-wrap: wrap;
-  margin-top: 34px;
+  margin-top: 30px;
   animation: rise .85s .2s ease both;
 }
 .button {
@@ -140,85 +145,274 @@ h1 {
   border-radius: 999px;
   padding: 13px 19px;
   font-size: 14px;
+  background: transparent;
+  color: var(--white);
+  cursor: pointer;
   transition: background .22s ease, color .22s ease, transform .22s ease;
 }
 .button.primary { background: var(--white); color: var(--black); }
 .button:hover { transform: translateY(-2px); }
 .button:not(.primary):hover { background: var(--white); color: var(--black); }
 
-.section {
-  padding: 100px clamp(22px, 6vw, 90px);
-  border-bottom: 1px solid var(--line);
-  scroll-margin-top: 86px;
-}
-.section h2 {
-  font-size: clamp(36px, 5.4vw, 82px);
-  line-height: .98;
-  letter-spacing: -.055em;
-  margin: 0 0 18px;
-  max-width: 900px;
-}
-.section-copy {
-  max-width: 720px;
-  color: var(--soft);
-  font-size: 19px;
-  line-height: 1.55;
-}
-.grid {
+.layout {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-  margin-top: 44px;
+  grid-template-columns: minmax(0, 1fr) 330px;
+  gap: 22px;
+  padding: 34px clamp(22px, 6vw, 90px) 96px;
 }
-.card {
-  min-height: 250px;
-  padding: 28px;
+.main-column {
+  min-width: 0;
+}
+.sidebar {
+  position: sticky;
+  top: 88px;
+  align-self: start;
+  display: grid;
+  gap: 16px;
+}
+.panel, .composer, .post, .sidebar-card {
   border: 1px solid var(--line);
   background: var(--panel);
   border-radius: 30px;
-  transition: transform .25s ease, border-color .25s ease, background .25s ease;
 }
-.card:hover {
-  transform: translateY(-5px);
-  border-color: rgba(255,255,255,.34);
-  background: rgba(255,255,255,.082);
+.panel {
+  padding: 22px;
 }
-.card span {
-  color: var(--soft);
+.panel-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  margin-bottom: 16px;
+}
+.panel-title h2, .sidebar-card h3 {
+  margin: 0;
+  font-size: 20px;
+  letter-spacing: -.03em;
+}
+.panel-title span {
+  color: var(--muted);
   font-size: 13px;
-  letter-spacing: .14em;
-  text-transform: uppercase;
 }
-.card h3 {
-  font-size: 28px;
-  letter-spacing: -.04em;
-  margin: 46px 0 12px;
+
+.pinned {
+  padding: 24px;
+  margin-bottom: 22px;
+  border-color: rgba(255,255,255,.28);
+  background:
+    linear-gradient(135deg, rgba(255,255,255,.09), rgba(255,255,255,.035)),
+    var(--panel);
 }
-.card p {
+.post-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+.author {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--line);
+  background: var(--white);
+  color: var(--black);
+  font-weight: 700;
+}
+.author strong {
+  display: block;
+  font-weight: 560;
+}
+.author small {
+  display: block;
+  color: var(--muted);
+  margin-top: 2px;
+}
+.badge {
+  border: 1px solid rgba(255,255,255,.24);
+  border-radius: 999px;
+  padding: 7px 10px;
   color: var(--soft);
-  line-height: 1.55;
+  font-size: 12px;
+  white-space: nowrap;
+}
+.post h3 {
+  margin: 0 0 10px;
+  font-size: clamp(24px, 3vw, 38px);
+  letter-spacing: -.05em;
+}
+.post p {
+  color: var(--soft);
+  line-height: 1.58;
   margin: 0;
 }
-.topic-list {
-  border: 1px solid var(--line);
-  border-radius: 30px;
-  overflow: hidden;
-  margin-top: 38px;
+.placeholder-box {
+  margin-top: 18px;
+  padding: 18px;
+  border: 1px dashed rgba(255,255,255,.24);
+  border-radius: 22px;
+  color: var(--muted);
+  background: rgba(255,255,255,.025);
 }
-.topic {
+.file-drop-preview {
   display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 18px;
-  padding: 24px;
-  border-bottom: 1px solid var(--line);
-  transition: background .22s ease;
+  gap: 10px;
+  margin-top: 14px;
 }
-.topic:last-child { border-bottom: 0; }
-.topic:hover { background: rgba(255,255,255,.055); }
-.topic strong { font-weight: 500; }
-.topic span { color: var(--soft); }
+.file-line {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  color: var(--soft);
+  background: rgba(255,255,255,.025);
+  font-size: 13px;
+}
+
+.composer {
+  padding: 22px;
+  margin-bottom: 22px;
+}
+.composer-grid {
+  display: grid;
+  gap: 12px;
+}
+.input, .textarea {
+  width: 100%;
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,.035);
+  color: var(--white);
+  border-radius: 18px;
+  padding: 14px 15px;
+  outline: none;
+  transition: border-color .22s ease, background .22s ease;
+}
+.input:focus, .textarea:focus {
+  border-color: rgba(255,255,255,.38);
+  background: rgba(255,255,255,.055);
+}
+.textarea {
+  min-height: 118px;
+  resize: vertical;
+}
+.composer-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 14px;
+}
+.note {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.file-input-wrap {
+  position: relative;
+  overflow: hidden;
+  display: inline-flex;
+}
+.file-input-wrap input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.feed {
+  display: grid;
+  gap: 14px;
+}
+.post {
+  padding: 22px;
+  transition: transform .22s ease, border-color .22s ease, background .22s ease;
+}
+.post:hover {
+  transform: translateY(-2px);
+  border-color: rgba(255,255,255,.25);
+  background: var(--panel-2);
+}
+.post-title-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  margin-bottom: 12px;
+}
+.post-title-row h3 {
+  font-size: 24px;
+  margin: 0;
+}
+.meta {
+  color: var(--muted);
+  font-size: 13px;
+  white-space: nowrap;
+}
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+}
+.tag {
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 7px 10px;
+  color: var(--soft);
+  font-size: 12px;
+}
+
+.sidebar-card {
+  padding: 20px;
+}
+.sidebar-card p {
+  margin: 12px 0 0;
+  color: var(--soft);
+  line-height: 1.5;
+}
+.category-list {
+  display: grid;
+  gap: 10px;
+  margin-top: 16px;
+}
+.category {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  color: var(--soft);
+  transition: color .22s ease, background .22s ease, transform .22s ease;
+}
+.category:hover {
+  color: var(--white);
+  background: rgba(255,255,255,.055);
+  transform: translateY(-1px);
+}
+
+.firebase-slot {
+  margin-top: 16px;
+  padding: 16px;
+  border: 1px dashed rgba(255,255,255,.25);
+  border-radius: 18px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
 .footer {
   padding: 48px clamp(22px, 6vw, 90px);
+  border-top: 1px solid var(--line);
   color: var(--soft);
   display: flex;
   justify-content: space-between;
@@ -227,31 +421,25 @@ h1 {
 }
 .footer img { width: 130px; filter: invert(1); opacity: .9; }
 
-.reveal {
-  opacity: 0;
-  transform: translateY(18px);
-  animation: rise .8s ease forwards;
-  animation-timeline: view();
-  animation-range: entry 5% cover 32%;
-}
 @keyframes rise {
   from { opacity: 0; transform: translateY(18px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
-@media (max-width: 900px) {
-  .grid { grid-template-columns: 1fr; }
-  .topic { grid-template-columns: 1fr; }
+@media (max-width: 980px) {
+  .layout { grid-template-columns: 1fr; }
+  .sidebar { position: static; }
 }
 @media (max-width: 560px) {
   .nav { padding-inline: 18px; }
   .logo { width: 124px; }
   .nav-links { gap: 14px; }
   .nav-links a:not(.keep) { display: none; }
+  .post-header, .post-title-row { align-items: flex-start; flex-direction: column; }
 }
 @media (prefers-reduced-motion: reduce) {
-  body, .nav, .nav-links a, .button, .card, .topic { transition: none !important; }
-  .reveal, .eyebrow, h1, .hero p, .actions { animation: none !important; opacity: 1 !important; transform: none !important; }
+  body, .nav, .nav-links a, .button, .post, .category, .input, .textarea { transition: none !important; }
+  .eyebrow, h1, .hero p, .actions { animation: none !important; opacity: 1 !important; transform: none !important; }
 }
 </style>
 </head>
@@ -260,8 +448,8 @@ h1 {
 <a aria-label="GEWBAR Home" href="index.html" data-page-link><img alt="GEWBAR" class="logo" src="New Project.svg" /></a>
 <div class="nav-links">
 <a href="index.html" data-page-link>FM-1</a>
-<a href="#cad">CAD</a>
-<a href="#opensource">Open Source</a>
+<a href="#posts">Posts</a>
+<a href="#composer">Post</a>
 <a class="keep active" href="#top">Forum</a>
 </div>
 </nav>
@@ -270,56 +458,123 @@ h1 {
 <section class="hero">
 <div>
 <div class="eyebrow">GEWBAR Forum</div>
-<h1>Build in public.</h1>
-<p>A clean place for FM-1 builders to share CAD changes, body finishes, PCB revisions, assembly notes, and open-source improvements.</p>
+<h1>Builder board.</h1>
+<p>A lightweight forum mockup for FM-1 builders: post build notes, CAD revisions, body finishes, files, and open-source improvements. Local-only for now; Firebase Realtime Database space is reserved but not wired yet.</p>
 <div class="actions">
-<a class="button primary" href="#cad">CAD topics</a>
-<a class="button" href="#opensource">Open-source topics</a>
+<a class="button primary" href="#composer">Create a post</a>
+<a class="button" href="#posts">Read posts</a>
 </div>
 </div>
 </section>
 
-<section class="section reveal" id="cad">
-<div class="eyebrow">CAD + body files</div>
-<h2>Modify the shell without starting over.</h2>
-<p class="section-copy">Post body revisions, alternate faceplates, capsule mounts, grill retention ideas, resin-print settings, and tolerance fixes for M2 heat-set inserts.</p>
-<div class="grid">
-<article class="card">
-<span>01</span>
-<h3>Body revisions</h3>
-<p>Share changes to the main body, faceplate seam, screw bosses, internal standoffs, and cable routing.</p>
+<section class="layout">
+<div class="main-column">
+
+<article class="post pinned">
+<div class="post-header">
+<div class="author">
+<div class="avatar">G</div>
+<div>
+<strong>Goober</strong>
+<small>Pinned post · founder note</small>
+</div>
+</div>
+<span class="badge">Pinned at top</span>
+</div>
+<h3>Welcome to the FM-1 build forum.</h3>
+<p>[Fill this message in later. Use this space for your main announcement, build-kit notes, current CAD status, file release notes, or what people should test first.]</p>
+<div class="placeholder-box">
+<strong>Dropped files placeholder</strong>
+<p style="margin-top:8px;">Add your downloadable files here later: CAD files, STL/STEP exports, PCB files, BOM, wiring diagrams, render packs, or build guides.</p>
+<div class="file-drop-preview">
+<div class="file-line"><span>FM-1_body_files.zip</span><span>coming soon</span></div>
+<div class="file-line"><span>FM-1_build_notes.pdf</span><span>coming soon</span></div>
+<div class="file-line"><span>FM-1_pcb_release.zip</span><span>coming soon</span></div>
+</div>
+</div>
 </article>
-<article class="card">
-<span>02</span>
-<h3>Finish tests</h3>
-<p>Compare matte resin, ceramic resin, painted bodies, dyed prints, texture experiments, and post-processing steps.</p>
+
+<section class="composer" id="composer">
+<div class="panel-title">
+<h2>Create a post</h2>
+<span>Local preview only</span>
+</div>
+<form class="composer-grid" id="postForm">
+<input class="input" id="postName" placeholder="Name" value="Builder" />
+<input class="input" id="postTitle" placeholder="Post title" />
+<textarea class="textarea" id="postBody" placeholder="Share a CAD change, build note, question, finish test, or file update..."></textarea>
+<input class="input" id="postTags" placeholder="Tags, separated by commas — CAD, PCB, resin, build kit" />
+<div class="composer-actions">
+<label class="button file-input-wrap">
+Attach files later
+<input id="postFiles" type="file" multiple />
+</label>
+<button class="button primary" type="submit">Post locally</button>
+<span class="note">This does not upload anywhere yet.</span>
+</div>
+</form>
+</section>
+
+<section class="panel" id="posts">
+<div class="panel-title">
+<h2>Recent posts</h2>
+<span id="postCount">3 starter posts</span>
+</div>
+<div class="feed" id="feed">
+<article class="post">
+<div class="post-title-row">
+<h3>Faceplate tolerances for M2 inserts</h3>
+<span class="meta">starter post</span>
+</div>
+<p>Use this thread for heat-set insert fit, screw boss thickness, faceplate spacing, and grill tension notes.</p>
+<div class="tags"><span class="tag">CAD</span><span class="tag">M2 inserts</span><span class="tag">body kit</span></div>
 </article>
-<article class="card">
-<span>03</span>
-<h3>Accessories</h3>
-<p>Design stands, shock mounts, pop filters, alternate grills, capsule cradles, and printable assembly tools.</p>
+<article class="post">
+<div class="post-title-row">
+<h3>Resin body finish experiments</h3>
+<span class="meta">starter post</span>
+</div>
+<p>Share photos, sanding steps, coatings, ceramic resin tests, dye tests, and anything that makes the body feel more premium.</p>
+<div class="tags"><span class="tag">resin</span><span class="tag">finish</span><span class="tag">monochrome</span></div>
+</article>
+<article class="post">
+<div class="post-title-row">
+<h3>Open-source file release checklist</h3>
+<span class="meta">starter post</span>
+</div>
+<p>A place to track the CAD, PCB, BOM, firmware, diagrams, licenses, and build guide before the first public release.</p>
+<div class="tags"><span class="tag">open source</span><span class="tag">files</span><span class="tag">docs</span></div>
 </article>
 </div>
 </section>
 
-<section class="section reveal" id="opensource">
-<div class="eyebrow">Open source</div>
-<h2>The mic gets better when builders can change it.</h2>
-<p class="section-copy">Use this space for public BOM notes, board-stack ideas, firmware changes, capsule tests, and documentation improvements.</p>
-<div class="topic-list">
-<a class="topic" href="#">
-<strong>FM-1 build kit notes</strong>
-<span>Printed body, installed M2 inserts, hardware, and builder assembly steps.</span>
-</a>
-<a class="topic" href="#">
-<strong>PCB + signal path</strong>
-<span>Preamp, ADC, USB audio, grounding, shielding, and revision notes.</span>
-</a>
-<a class="topic" href="#">
-<strong>Community mods</strong>
-<span>Alternate colors, materials, capsules, brackets, and open design experiments.</span>
-</a>
 </div>
+
+<aside class="sidebar">
+<div class="sidebar-card">
+<h3>Categories</h3>
+<p>Quick paths for the forum sections you will wire up later.</p>
+<div class="category-list">
+<a class="category" href="#posts"><span>CAD + printed body</span><span>→</span></a>
+<a class="category" href="#posts"><span>PCB + audio chain</span><span>→</span></a>
+<a class="category" href="#posts"><span>Build kit support</span><span>→</span></a>
+<a class="category" href="#posts"><span>Community mods</span><span>→</span></a>
+</div>
+</div>
+
+<div class="sidebar-card">
+<h3>Firebase placeholder</h3>
+<p>Reserved space for a future Realtime Database connection. Nothing is connected yet.</p>
+<div class="firebase-slot">
+<code>
+// later:<br>
+database.ref("forum/posts")<br>
+database.ref("forum/files")<br>
+database.ref("forum/pinned")
+</code>
+</div>
+</div>
+</aside>
 </section>
 </main>
 
@@ -337,14 +592,11 @@ window.addEventListener("load", () => {
 
 const nav = document.querySelector(".nav");
 
-function easeInOutCubic(t) {
-  return t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
-}
-
-function smoothScrollTo(target, duration = 950) {
+function smoothSlideTo(target, duration = 1250) {
   if (!target) return;
+  const offset = 68;
   const start = window.scrollY;
-  const end = target.getBoundingClientRect().top + window.scrollY - 78;
+  const end = target.getBoundingClientRect().top + window.scrollY - offset;
   const distance = end - start;
   const startTime = performance.now();
 
@@ -356,7 +608,8 @@ function smoothScrollTo(target, duration = 950) {
   function step(now) {
     const elapsed = now - startTime;
     const progress = Math.min(elapsed / duration, 1);
-    window.scrollTo(0, start + distance * easeInOutCubic(progress));
+    const eased = 1 - Math.pow(1 - progress, 4);
+    window.scrollTo(0, start + distance * eased);
     if (progress < 1) requestAnimationFrame(step);
   }
 
@@ -368,8 +621,8 @@ document.querySelectorAll("a[href^='#']").forEach(link => {
     const target = document.querySelector(link.getAttribute("href"));
     if (!target) return;
     event.preventDefault();
-    smoothScrollTo(target);
-    history.pushState(null, "", link.getAttribute("href"));
+    smoothSlideTo(target);
+    setTimeout(() => history.pushState(null, "", link.getAttribute("href")), prefersReducedMotion ? 0 : 500);
   });
 });
 
@@ -386,9 +639,57 @@ document.querySelectorAll("[data-page-link]").forEach(link => {
 function updateNav() {
   nav.classList.toggle("scrolled", window.scrollY > 24);
 }
-
 window.addEventListener("scroll", updateNav, { passive: true });
 updateNav();
+
+const form = document.getElementById("postForm");
+const feed = document.getElementById("feed");
+const postCount = document.getElementById("postCount");
+
+function escapeHtml(value) {
+  return value.replace(/[&<>"']/g, char => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#039;"
+  }[char]));
+}
+
+form.addEventListener("submit", event => {
+  event.preventDefault();
+
+  const name = document.getElementById("postName").value.trim() || "Builder";
+  const title = document.getElementById("postTitle").value.trim() || "Untitled post";
+  const body = document.getElementById("postBody").value.trim() || "No message added yet.";
+  const tags = document.getElementById("postTags").value
+    .split(",")
+    .map(tag => tag.trim())
+    .filter(Boolean);
+
+  const fileInput = document.getElementById("postFiles");
+  const fileCount = fileInput.files ? fileInput.files.length : 0;
+
+  const article = document.createElement("article");
+  article.className = "post";
+  article.innerHTML = `
+    <div class="post-title-row">
+      <h3>${escapeHtml(title)}</h3>
+      <span class="meta">posted by ${escapeHtml(name)}</span>
+    </div>
+    <p>${escapeHtml(body)}</p>
+    ${fileCount ? `<div class="placeholder-box">${fileCount} file${fileCount === 1 ? "" : "s"} selected. Upload support will be wired later.</div>` : ""}
+    <div class="tags">
+      ${(tags.length ? tags : ["community"]).map(tag => `<span class="tag">${escapeHtml(tag)}</span>`).join("")}
+    </div>
+  `;
+
+  feed.prepend(article);
+  form.reset();
+  document.getElementById("postName").value = name;
+  postCount.textContent = `${feed.children.length} visible posts`;
+  smoothSlideTo(article, 850);
+});
 </script>
 </body>
 </html>
