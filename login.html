@@ -600,7 +600,7 @@ function formatDate(value) {
   return new Intl.DateTimeFormat(undefined, { month: "short", day: "numeric", hour: "numeric", minute: "2-digit" }).format(new Date(value));
 }
 
-function getProfile(uid) {
+async function getProfile(uid) {
   const snap = await get(child(ref(db), `profiles/${uid}`));
   return snap.exists() ? snap.val() : null;
 }
