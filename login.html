@@ -425,8 +425,6 @@ import {
   browserLocalPersistence
 } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
 import {
-
-try {
   getDatabase,
   ref,
   child,
@@ -437,6 +435,17 @@ try {
   onValue,
   runTransaction
 } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-database.js";
+
+
+window.addEventListener("error", event => {
+  const box = document.getElementById("firebaseStatus");
+  if (box) box.textContent = "Page error: " + event.message;
+});
+
+window.addEventListener("unhandledrejection", event => {
+  const box = document.getElementById("firebaseStatus");
+  if (box) box.textContent = "Async error: " + (event.reason?.message || event.reason);
+});
 
 const firebaseConfig = {
   apiKey: "AIzaSyCeMTlQ2ntBKvL4uEffSA7E5P6TsCyzC4I",
@@ -765,7 +774,7 @@ createAccountButton.addEventListener("click", async () => {
 
     setCookie("gewbar_username", username);
     loginUsername.value = username;
-    signupStatus.textContent = "Account created. You are logged in. Go back to the forum to post.";
+    signupStatus.textContent = "Account created. You are logged in.";
     signupStatus.textContent = "Account created. You are logged in. Go back to the forum to post.";
   } catch (error) {
     console.error(error);
@@ -798,7 +807,7 @@ loginButton.addEventListener("click", async () => {
   try {
     await signInWithEmailAndPassword(auth, usernameToEmail(username), password);
     setCookie("gewbar_username", username);
-    loginStatus.textContent = "Logged in. Go back to the forum to post.";
+    loginStatus.textContent = "Logged in.";
     signupStatus.textContent = "Account created. You are logged in. Go back to the forum to post.";
   } catch (error) {
     console.error(error);
@@ -851,11 +860,6 @@ onAuthStateChanged(auth, async user => {
 });
 
 
-} catch (error) {
-  console.error(error);
-  const box = document.getElementById("firebaseStatus") || document.body;
-  if (box) box.textContent = "Script error: " + error.message;
-}
 </script>
 </body>
 </html>
