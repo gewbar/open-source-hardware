@@ -18,10 +18,7 @@
 }
 
 * { box-sizing: border-box; }
-html {
-  scroll-behavior: auto;
-  scroll-padding-top: 86px;
-}
+html { scroll-behavior: auto; scroll-padding-top: 86px; }
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", "Helvetica Neue", Arial, sans-serif;
@@ -58,27 +55,10 @@ button:disabled { opacity: .45; cursor: not-allowed; }
   background: rgba(0,0,0,.88);
   border-bottom-color: rgba(255,255,255,.2);
 }
-.logo {
-  width: 156px;
-  height: auto;
-  display: block;
-  filter: invert(1);
-}
-.nav-links {
-  display: flex;
-  align-items: center;
-  gap: 24px;
-  font-size: 13px;
-  color: var(--soft);
-}
-.nav-links a {
-  position: relative;
-  transition: color .22s ease, transform .22s ease;
-}
-.nav-links a:hover {
-  color: var(--white);
-  transform: translateY(-1px);
-}
+.logo { width: 156px; height: auto; display: block; filter: invert(1); }
+.nav-links { display: flex; align-items: center; gap: 24px; font-size: 13px; color: var(--soft); }
+.nav-links a { position: relative; transition: color .22s ease, transform .22s ease; }
+.nav-links a:hover { color: var(--white); transform: translateY(-1px); }
 .nav-links a::after {
   content: "";
   position: absolute;
@@ -91,8 +71,7 @@ button:disabled { opacity: .45; cursor: not-allowed; }
   transform-origin: center;
   transition: transform .26s ease;
 }
-.nav-links a:hover::after,
-.nav-links a.active::after { transform: scaleX(1); }
+.nav-links a:hover::after, .nav-links a.active::after { transform: scaleX(1); }
 
 .hero {
   padding: 128px clamp(22px, 6vw, 90px) 54px;
@@ -133,13 +112,7 @@ h1 {
   margin: 24px 0 0;
   animation: rise .85s .12s ease both;
 }
-.actions {
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
-  margin-top: 30px;
-  animation: rise .85s .2s ease both;
-}
+.actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 30px; animation: rise .85s .2s ease both; }
 .button {
   border: 1px solid var(--white);
   border-radius: 999px;
@@ -161,56 +134,25 @@ h1 {
   padding: 34px clamp(22px, 6vw, 90px) 96px;
 }
 .main-column { min-width: 0; }
-.sidebar {
-  position: sticky;
-  top: 88px;
-  align-self: start;
-  display: grid;
-  gap: 16px;
-}
-.panel, .composer, .post, .sidebar-card {
+.sidebar { position: sticky; top: 88px; align-self: start; display: grid; gap: 16px; }
+.panel, .composer, .post, .sidebar-card, .auth-box {
   border: 1px solid var(--line);
   background: var(--panel);
   border-radius: 30px;
 }
-.panel { padding: 22px; }
-.panel-title {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 18px;
-  margin-bottom: 16px;
-}
-.panel-title h2, .sidebar-card h3 {
-  margin: 0;
-  font-size: 20px;
-  letter-spacing: -.03em;
-}
-.panel-title span {
-  color: var(--muted);
-  font-size: 13px;
-}
+.panel, .composer, .auth-box { padding: 22px; }
+.panel-title { display: flex; align-items: center; justify-content: space-between; gap: 18px; margin-bottom: 16px; }
+.panel-title h2, .sidebar-card h3 { margin: 0; font-size: 20px; letter-spacing: -.03em; }
+.panel-title span { color: var(--muted); font-size: 13px; }
 
 .pinned {
   padding: 24px;
   margin-bottom: 22px;
   border-color: rgba(255,255,255,.28);
-  background:
-    linear-gradient(135deg, rgba(255,255,255,.09), rgba(255,255,255,.035)),
-    var(--panel);
+  background: linear-gradient(135deg, rgba(255,255,255,.09), rgba(255,255,255,.035)), var(--panel);
 }
-.post-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  margin-bottom: 18px;
-}
-.author {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
+.post-header { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 18px; }
+.author { display: flex; align-items: center; gap: 12px; }
 .avatar {
   width: 42px;
   height: 42px;
@@ -222,15 +164,8 @@ h1 {
   color: var(--black);
   font-weight: 700;
 }
-.author strong {
-  display: block;
-  font-weight: 560;
-}
-.author small {
-  display: block;
-  color: var(--muted);
-  margin-top: 2px;
-}
+.author strong { display: block; font-weight: 560; }
+.author small { display: block; color: var(--muted); margin-top: 2px; }
 .badge {
   border: 1px solid rgba(255,255,255,.24);
   border-radius: 999px;
@@ -239,17 +174,9 @@ h1 {
   font-size: 12px;
   white-space: nowrap;
 }
-.post h3 {
-  margin: 0 0 10px;
-  font-size: clamp(24px, 3vw, 38px);
-  letter-spacing: -.05em;
-}
-.post p {
-  color: var(--soft);
-  line-height: 1.58;
-  margin: 0;
-  white-space: pre-wrap;
-}
+.post h3 { margin: 0 0 10px; font-size: clamp(24px, 3vw, 38px); letter-spacing: -.05em; }
+.post p { color: var(--soft); line-height: 1.58; margin: 0; white-space: pre-wrap; }
+
 .placeholder-box {
   margin-top: 18px;
   padding: 18px;
@@ -258,11 +185,7 @@ h1 {
   color: var(--muted);
   background: rgba(255,255,255,.025);
 }
-.file-drop-preview {
-  display: grid;
-  gap: 10px;
-  margin-top: 14px;
-}
+.file-drop-preview { display: grid; gap: 10px; margin-top: 14px; }
 .file-line {
   display: flex;
   justify-content: space-between;
@@ -275,14 +198,25 @@ h1 {
   font-size: 13px;
 }
 
-.composer {
-  padding: 22px;
-  margin-bottom: 22px;
+.auth-box { margin-bottom: 22px; }
+.auth-tabs { display: flex; gap: 8px; margin-bottom: 16px; }
+.tab-button {
+  flex: 1;
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,.035);
+  color: var(--soft);
+  border-radius: 999px;
+  padding: 11px 13px;
+  cursor: pointer;
+  transition: background .22s ease, color .22s ease, border-color .22s ease;
 }
-.composer-grid {
-  display: grid;
-  gap: 12px;
+.tab-button.active {
+  background: var(--white);
+  color: var(--black);
+  border-color: var(--white);
 }
+.auth-panel { display: none; }
+.auth-panel.active { display: grid; gap: 12px; }
 .input, .textarea {
   width: 100%;
   border: 1px solid var(--line);
@@ -293,121 +227,33 @@ h1 {
   outline: none;
   transition: border-color .22s ease, background .22s ease;
 }
-.input:focus, .textarea:focus {
-  border-color: rgba(255,255,255,.38);
-  background: rgba(255,255,255,.055);
-}
-.textarea {
-  min-height: 118px;
-  resize: vertical;
-}
-.composer-actions {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 12px;
-  flex-wrap: wrap;
-  margin-top: 14px;
-}
-.note {
-  color: var(--muted);
-  font-size: 13px;
-}
-.status {
-  color: var(--soft);
-  font-size: 13px;
-  line-height: 1.5;
-}
+.input:focus, .textarea:focus { border-color: rgba(255,255,255,.38); background: rgba(255,255,255,.055); }
+.textarea { min-height: 118px; resize: vertical; }
+.auth-row, .composer-actions { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+.phone-row { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 10px; }
+#recaptcha-container { min-height: 1px; }
+.hidden { display: none !important; }
+.note, .status { color: var(--muted); font-size: 13px; line-height: 1.5; }
 .status.error { color: rgba(255,255,255,.9); background: var(--warn); border: 1px solid var(--line); padding: 10px 12px; border-radius: 14px; }
+.username-check { min-height: 20px; }
 
-.phone-auth-box {
-  display: grid;
-  gap: 12px;
-  padding: 16px;
-  border: 1px solid var(--line);
-  border-radius: 22px;
-  background: rgba(255,255,255,.035);
-}
+.composer { margin-bottom: 22px; }
+.composer-grid { display: grid; gap: 12px; }
+.file-input-wrap { position: relative; overflow: hidden; display: inline-flex; }
+.file-input-wrap input { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
 
-.phone-auth-box.hidden {
-  display: none;
-}
-
-.phone-row {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: 10px;
-}
-
-#recaptcha-container {
-  min-height: 1px;
-}
-
-.file-input-wrap {
-  position: relative;
-  overflow: hidden;
-  display: inline-flex;
-}
-.file-input-wrap input {
-  position: absolute;
-  inset: 0;
-  opacity: 0;
-  cursor: pointer;
-}
-
-.feed {
-  display: grid;
-  gap: 14px;
-}
-.post {
-  padding: 22px;
-  transition: transform .22s ease, border-color .22s ease, background .22s ease;
-}
-.post:hover {
-  transform: translateY(-2px);
-  border-color: rgba(255,255,255,.25);
-  background: var(--panel-2);
-}
-.post-title-row {
-  display: flex;
-  justify-content: space-between;
-  gap: 18px;
-  margin-bottom: 12px;
-}
-.post-title-row h3 {
-  font-size: 24px;
-  margin: 0;
-}
-.meta {
-  color: var(--muted);
-  font-size: 13px;
-  white-space: nowrap;
-}
-.tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 16px;
-}
-.tag {
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  padding: 7px 10px;
-  color: var(--soft);
-  font-size: 12px;
-}
+.feed { display: grid; gap: 14px; }
+.post { padding: 22px; transition: transform .22s ease, border-color .22s ease, background .22s ease; }
+.post:hover { transform: translateY(-2px); border-color: rgba(255,255,255,.25); background: var(--panel-2); }
+.post-title-row { display: flex; justify-content: space-between; gap: 18px; margin-bottom: 12px; }
+.post-title-row h3 { font-size: 24px; margin: 0; }
+.meta { color: var(--muted); font-size: 13px; white-space: nowrap; }
+.tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+.tag { border: 1px solid var(--line); border-radius: 999px; padding: 7px 10px; color: var(--soft); font-size: 12px; }
 
 .sidebar-card { padding: 20px; }
-.sidebar-card p {
-  margin: 12px 0 0;
-  color: var(--soft);
-  line-height: 1.5;
-}
-.category-list {
-  display: grid;
-  gap: 10px;
-  margin-top: 16px;
-}
+.sidebar-card p { margin: 12px 0 0; color: var(--soft); line-height: 1.5; }
+.category-list { display: grid; gap: 10px; margin-top: 16px; }
 .category {
   display: flex;
   justify-content: space-between;
@@ -418,12 +264,7 @@ h1 {
   color: var(--soft);
   transition: color .22s ease, background .22s ease, transform .22s ease;
 }
-.category:hover {
-  color: var(--white);
-  background: rgba(255,255,255,.055);
-  transform: translateY(-1px);
-}
-
+.category:hover { color: var(--white); background: rgba(255,255,255,.055); transform: translateY(-1px); }
 .firebase-slot {
   margin-top: 16px;
   padding: 16px;
@@ -433,9 +274,7 @@ h1 {
   font-size: 13px;
   line-height: 1.5;
 }
-.firebase-slot code {
-  color: var(--soft);
-}
+.firebase-slot code { color: var(--soft); }
 
 .footer {
   padding: 48px clamp(22px, 6vw, 90px);
@@ -448,10 +287,7 @@ h1 {
 }
 .footer img { width: 130px; filter: invert(1); opacity: .9; }
 
-@keyframes rise {
-  from { opacity: 0; transform: translateY(18px); }
-  to { opacity: 1; transform: translateY(0); }
-}
+@keyframes rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
 
 @media (max-width: 980px) {
   .layout { grid-template-columns: 1fr; }
@@ -465,7 +301,7 @@ h1 {
   .post-header, .post-title-row { align-items: flex-start; flex-direction: column; }
 }
 @media (prefers-reduced-motion: reduce) {
-  body, .nav, .nav-links a, .button, .post, .category, .input, .textarea { transition: none !important; }
+  body, .nav, .nav-links a, .button, .post, .category, .input, .textarea, .tab-button { transition: none !important; }
   .eyebrow, h1, .hero p, .actions { animation: none !important; opacity: 1 !important; transform: none !important; }
 }
 </style>
@@ -476,7 +312,7 @@ h1 {
 <div class="nav-links">
 <a href="index.html" data-page-link>FM-1</a>
 <a href="#posts">Posts</a>
-<a href="#composer">Post</a>
+<a href="#account">Account</a>
 <a class="keep active" href="#top">Forum</a>
 </div>
 </nav>
@@ -486,9 +322,9 @@ h1 {
 <div>
 <div class="eyebrow">GEWBAR Forum</div>
 <h1>Builder board.</h1>
-<p>A forum for FM-1 builders: post build notes, CAD revisions, body finishes, files, and open-source improvements. Posts now sync through Firebase Realtime Database after phone verification.</p>
+<p>Create an account with a phone-verified signup, then log in later with your username and password. Posts sync through Firebase Realtime Database.</p>
 <div class="actions">
-<a class="button primary" href="#composer">Create a post</a>
+<a class="button primary" href="#account">Create account</a>
 <a class="button" href="#posts">Read posts</a>
 </div>
 </div>
@@ -522,26 +358,50 @@ h1 {
 </div>
 </article>
 
-<section class="composer" id="composer">
+<section class="auth-box" id="account">
 <div class="panel-title">
-<h2>Create a post</h2>
-<span id="authStatus">Phone verification required</span>
+<h2>Account</h2>
+<span id="authStatus">Not signed in</span>
 </div>
-<div class="phone-auth-box" id="phoneAuthBox">
-<input class="input" id="phoneNumber" placeholder="Phone number, example: +18175551234" autocomplete="tel" />
+
+<div class="auth-tabs">
+<button class="tab-button active" id="signupTab" type="button">Sign up</button>
+<button class="tab-button" id="loginTab" type="button">Log in</button>
+</div>
+
+<div class="auth-panel active" id="signupPanel">
+<input class="input" id="signupUsername" placeholder="Username" maxlength="24" autocomplete="username" />
+<span class="note username-check" id="usernameStatus">Choose a username. Letters, numbers, underscore, and dash only.</span>
+<input class="input" id="signupPassword" placeholder="Password" type="password" maxlength="72" autocomplete="new-password" />
+<input class="input" id="signupPhone" placeholder="Phone number, example: +18175551234" autocomplete="tel" />
 <div class="phone-row">
-<input class="input" id="smsCode" placeholder="SMS code" inputmode="numeric" autocomplete="one-time-code" disabled />
+<input class="input" id="signupCode" placeholder="SMS code" inputmode="numeric" autocomplete="one-time-code" disabled />
 <button class="button" id="sendCodeButton" type="button">Send code</button>
 </div>
 <div class="phone-row">
 <div id="recaptcha-container"></div>
-<button class="button primary" id="verifyCodeButton" type="button" disabled>Verify</button>
+<button class="button primary" id="createAccountButton" type="button" disabled>Create account</button>
 </div>
-<span class="note" id="phoneStatus">Verify your number before posting.</span>
+<span class="status" id="signupStatus">Phone verification happens only during signup.</span>
 </div>
 
+<div class="auth-panel" id="loginPanel">
+<input class="input" id="loginUsername" placeholder="Username" maxlength="24" autocomplete="username" />
+<input class="input" id="loginPassword" placeholder="Password" type="password" maxlength="72" autocomplete="current-password" />
+<div class="auth-row">
+<button class="button primary" id="loginButton" type="button">Log in</button>
+<button class="button" id="logoutButton" type="button">Log out</button>
+</div>
+<span class="status" id="loginStatus">Login does not require another phone code.</span>
+</div>
+</section>
+
+<section class="composer" id="composer">
+<div class="panel-title">
+<h2>Create a post</h2>
+<span id="postAuthStatus">Login required</span>
+</div>
 <form class="composer-grid" id="postForm">
-<input class="input" id="postName" placeholder="Name" value="Builder" maxlength="40" />
 <input class="input" id="postTitle" placeholder="Post title" maxlength="120" />
 <textarea class="textarea" id="postBody" placeholder="Share a CAD change, build note, question, finish test, or file update..." maxlength="5000"></textarea>
 <input class="input" id="postTags" placeholder="Tags, separated by commas — CAD, PCB, resin, build kit" maxlength="180" />
@@ -551,7 +411,7 @@ Attach file names
 <input id="postFiles" type="file" multiple />
 </label>
 <button class="button primary" id="submitPost" type="submit" disabled>Post to forum</button>
-<span class="note" id="postStatus">Verify your phone number first.</span>
+<span class="note" id="postStatus">Create an account or log in first.</span>
 </div>
 </form>
 </section>
@@ -580,7 +440,7 @@ Attach file names
 
 <div class="sidebar-card">
 <h3>Firebase status</h3>
-<p>Realtime Database is wired with phone-number sign-in. Files are not uploaded yet; selected attachments are saved as file names only.</p>
+<p>Signup checks username availability, verifies phone once, then links username/password login.</p>
 <div class="firebase-slot">
 <code id="firebaseStatus">Initializing Firebase...</code>
 </div>
@@ -597,8 +457,29 @@ Attach file names
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
 import { getAnalytics, isSupported } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-analytics.js";
-import { getAuth, RecaptchaVerifier, signInWithPhoneNumber, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
-import { getDatabase, ref, push, set, onValue, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-database.js";
+import {
+  getAuth,
+  RecaptchaVerifier,
+  signInWithPhoneNumber,
+  EmailAuthProvider,
+  linkWithCredential,
+  signInWithEmailAndPassword,
+  onAuthStateChanged,
+  signOut,
+  setPersistence,
+  browserLocalPersistence
+} from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
+import {
+  getDatabase,
+  ref,
+  child,
+  get,
+  push,
+  set,
+  remove,
+  onValue,
+  runTransaction
+} from "https://www.gstatic.com/firebasejs/10.12.5/firebase-database.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCeMTlQ2ntBKvL4uEffSA7E5P6TsCyzC4I",
@@ -612,39 +493,97 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-isSupported().then(ok => {
-  if (ok) getAnalytics(app);
-}).catch(() => {});
+isSupported().then(ok => { if (ok) getAnalytics(app); }).catch(() => {});
 
 const auth = getAuth(app);
 auth.useDeviceLanguage();
+await setPersistence(auth, browserLocalPersistence);
 
 const db = getDatabase(app);
-
-let confirmationResult = null;
-let recaptchaVerifier = null;
-
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
 const nav = document.querySelector(".nav");
-const form = document.getElementById("postForm");
 const feed = document.getElementById("feed");
 const postCount = document.getElementById("postCount");
 const authStatus = document.getElementById("authStatus");
+const postAuthStatus = document.getElementById("postAuthStatus");
 const firebaseStatus = document.getElementById("firebaseStatus");
+
+const signupTab = document.getElementById("signupTab");
+const loginTab = document.getElementById("loginTab");
+const signupPanel = document.getElementById("signupPanel");
+const loginPanel = document.getElementById("loginPanel");
+
+const signupUsername = document.getElementById("signupUsername");
+const signupPassword = document.getElementById("signupPassword");
+const signupPhone = document.getElementById("signupPhone");
+const signupCode = document.getElementById("signupCode");
+const sendCodeButton = document.getElementById("sendCodeButton");
+const createAccountButton = document.getElementById("createAccountButton");
+const signupStatus = document.getElementById("signupStatus");
+const usernameStatus = document.getElementById("usernameStatus");
+
+const loginUsername = document.getElementById("loginUsername");
+const loginPassword = document.getElementById("loginPassword");
+const loginButton = document.getElementById("loginButton");
+const logoutButton = document.getElementById("logoutButton");
+const loginStatus = document.getElementById("loginStatus");
+
+const form = document.getElementById("postForm");
 const postStatus = document.getElementById("postStatus");
 const submitPost = document.getElementById("submitPost");
-const phoneStatus = document.getElementById("phoneStatus");
-const phoneNumber = document.getElementById("phoneNumber");
-const smsCode = document.getElementById("smsCode");
-const sendCodeButton = document.getElementById("sendCodeButton");
-const verifyCodeButton = document.getElementById("verifyCodeButton");
-const phoneAuthBox = document.getElementById("phoneAuthBox");
 
 let currentUser = null;
+let currentProfile = null;
+let confirmationResult = null;
+let recaptchaVerifier = null;
+let usernameAvailable = false;
+let usernameCheckTimer = null;
 
 window.addEventListener("load", () => {
   document.body.classList.add("loaded");
+  const savedUsername = getCookie("gewbar_username");
+  if (savedUsername) {
+    loginUsername.value = savedUsername;
+  }
 });
+
+function setCookie(name, value, days = 180) {
+  const expires = new Date(Date.now() + days * 86400000).toUTCString();
+  document.cookie = `${name}=${encodeURIComponent(value)}; expires=${expires}; path=/; SameSite=Lax`;
+}
+
+function getCookie(name) {
+  return document.cookie
+    .split("; ")
+    .find(row => row.startsWith(name + "="))
+    ?.split("=")[1]
+    ? decodeURIComponent(document.cookie.split("; ").find(row => row.startsWith(name + "=")).split("=")[1])
+    : "";
+}
+
+function normalizeUsername(value) {
+  return value.trim().toLowerCase().replace(/[^a-z0-9_-]/g, "");
+}
+
+function usernameToEmail(username) {
+  return `${normalizeUsername(username)}@users.gewbar.local`;
+}
+
+function validUsername(username) {
+  return /^[a-z0-9_-]{3,24}$/.test(username);
+}
+
+function switchTab(tab) {
+  const signup = tab === "signup";
+  signupTab.classList.toggle("active", signup);
+  loginTab.classList.toggle("active", !signup);
+  signupPanel.classList.toggle("active", signup);
+  loginPanel.classList.toggle("active", !signup);
+}
+
+signupTab.addEventListener("click", () => switchTab("signup"));
+loginTab.addEventListener("click", () => switchTab("login"));
 
 function smoothSlideTo(target, duration = 1250) {
   if (!target) return;
@@ -708,42 +647,18 @@ function escapeHtml(value) {
 
 function formatDate(value) {
   if (!value || typeof value !== "number") return "just now";
-  return new Intl.DateTimeFormat(undefined, {
-    month: "short",
-    day: "numeric",
-    hour: "numeric",
-    minute: "2-digit"
-  }).format(new Date(value));
+  return new Intl.DateTimeFormat(undefined, { month: "short", day: "numeric", hour: "numeric", minute: "2-digit" }).format(new Date(value));
 }
 
 function renderTags(tags) {
-  let safeTags = [];
-
-  if (Array.isArray(tags)) {
-    safeTags = tags;
-  } else if (tags && typeof tags === "object") {
-    safeTags = Object.values(tags);
-  }
-
+  let safeTags = Array.isArray(tags) ? tags : tags && typeof tags === "object" ? Object.values(tags) : [];
   if (!safeTags.length) safeTags = ["community"];
-
-  return safeTags
-    .slice(0, 8)
-    .map(tag => `<span class="tag">${escapeHtml(tag)}</span>`)
-    .join("");
+  return safeTags.slice(0, 8).map(tag => `<span class="tag">${escapeHtml(tag)}</span>`).join("");
 }
 
 function renderFiles(fileNames) {
-  let names = [];
-
-  if (Array.isArray(fileNames)) {
-    names = fileNames;
-  } else if (fileNames && typeof fileNames === "object") {
-    names = Object.values(fileNames);
-  }
-
+  let names = Array.isArray(fileNames) ? fileNames : fileNames && typeof fileNames === "object" ? Object.values(fileNames) : [];
   if (!names.length) return "";
-
   return `
     <div class="placeholder-box">
       <strong>Attached file names</strong>
@@ -760,7 +675,7 @@ function renderPost(post) {
   article.innerHTML = `
     <div class="post-title-row">
       <h3>${escapeHtml(post.title)}</h3>
-      <span class="meta">${escapeHtml(post.name)} · ${formatDate(post.createdAt)}</span>
+      <span class="meta">${escapeHtml(post.username || post.name || "Builder")} · ${formatDate(post.createdAt)}</span>
     </div>
     <p>${escapeHtml(post.body)}</p>
     ${renderFiles(post.fileNames)}
@@ -773,7 +688,6 @@ function loadPinnedPost() {
   onValue(ref(db, "forum/pinned"), snapshot => {
     const pinned = snapshot.val();
     if (!pinned) return;
-
     document.getElementById("pinnedAuthor").textContent = pinned.author || "Goober";
     document.getElementById("pinnedTitle").textContent = pinned.title || "Welcome to the build forum.";
     document.getElementById("pinnedBody").textContent = pinned.body || "";
@@ -788,8 +702,6 @@ function loadPinnedPost() {
         resourceList.appendChild(line);
       });
     }
-  }, error => {
-    console.warn(error);
   });
 }
 
@@ -797,23 +709,18 @@ function loadResources() {
   onValue(ref(db, "forum/resources"), snapshot => {
     const resources = snapshot.val();
     if (!resources) return;
-
     const resourceList = document.getElementById("resourceList");
     resourceList.innerHTML = "";
-
     Object.values(resources).slice(0, 12).forEach(resource => {
       const line = document.createElement("div");
       line.className = "file-line";
-      const label = resource.url ? "open" : "coming soon";
       const name = escapeHtml(resource.name || "Untitled resource");
       const url = resource.url ? escapeHtml(resource.url) : "#";
       line.innerHTML = resource.url
-        ? `<a href="${url}" target="_blank" rel="noopener">${name}</a><span>${label}</span>`
-        : `<span>${name}</span><span>${label}</span>`;
+        ? `<a href="${url}" target="_blank" rel="noopener">${name}</a><span>open</span>`
+        : `<span>${name}</span><span>coming soon</span>`;
       resourceList.appendChild(line);
     });
-  }, error => {
-    console.warn(error);
   });
 }
 
@@ -841,10 +748,7 @@ function loadPosts() {
       .map(([id, post]) => ({ id, ...post }))
       .sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
 
-    posts.slice(0, 50).forEach(post => {
-      feed.appendChild(renderPost(post));
-    });
-
+    posts.slice(0, 50).forEach(post => feed.appendChild(renderPost(post)));
     postCount.textContent = `${posts.length} visible post${posts.length === 1 ? "" : "s"}`;
   }, error => {
     postCount.textContent = "Could not load posts";
@@ -860,6 +764,206 @@ function loadPosts() {
     `;
   });
 }
+
+async function getProfile(uid) {
+  const snap = await get(child(ref(db), `profiles/${uid}`));
+  return snap.exists() ? snap.val() : null;
+}
+
+signupUsername.addEventListener("input", () => {
+  clearTimeout(usernameCheckTimer);
+  usernameAvailable = false;
+  createAccountButton.disabled = true;
+
+  const username = normalizeUsername(signupUsername.value);
+  signupUsername.value = username;
+
+  if (!validUsername(username)) {
+    usernameStatus.textContent = "Username must be 3–24 characters: letters, numbers, underscore, or dash.";
+    return;
+  }
+
+  usernameStatus.textContent = "Checking username...";
+  usernameCheckTimer = setTimeout(async () => {
+    try {
+      const snap = await get(child(ref(db), `usernames/${username}`));
+      usernameAvailable = !snap.exists();
+      usernameStatus.textContent = usernameAvailable ? "Username is available." : "Username is already taken.";
+      createAccountButton.disabled = !(confirmationResult && usernameAvailable);
+    } catch (error) {
+      usernameStatus.textContent = error.message;
+    }
+  }, 350);
+});
+
+function setupRecaptcha() {
+  if (recaptchaVerifier) return recaptchaVerifier;
+  recaptchaVerifier = new RecaptchaVerifier(auth, "recaptcha-container", {
+    size: "invisible",
+    callback: () => {
+      signupStatus.textContent = "reCAPTCHA passed. Sending code...";
+    },
+    "expired-callback": () => {
+      signupStatus.textContent = "reCAPTCHA expired. Try sending the code again.";
+    }
+  });
+  return recaptchaVerifier;
+}
+
+sendCodeButton.addEventListener("click", async () => {
+  const username = normalizeUsername(signupUsername.value);
+  const password = signupPassword.value;
+  const number = signupPhone.value.trim();
+
+  if (!validUsername(username)) {
+    signupStatus.textContent = "Pick a valid username first.";
+    return;
+  }
+  if (!usernameAvailable) {
+    signupStatus.textContent = "Username is not available yet.";
+    return;
+  }
+  if (password.length < 8) {
+    signupStatus.textContent = "Use a password with at least 8 characters.";
+    return;
+  }
+  if (!number.startsWith("+") || number.length < 8) {
+    signupStatus.textContent = "Use international phone format, example: +18175551234.";
+    return;
+  }
+
+  sendCodeButton.disabled = true;
+  signupStatus.textContent = "Sending SMS code...";
+
+  try {
+    const verifier = setupRecaptcha();
+    confirmationResult = await signInWithPhoneNumber(auth, number, verifier);
+    signupCode.disabled = false;
+    createAccountButton.disabled = !usernameAvailable;
+    signupStatus.textContent = "Code sent. Enter it, then create your account.";
+  } catch (error) {
+    console.error(error);
+    signupStatus.textContent = error.message;
+    sendCodeButton.disabled = false;
+    if (recaptchaVerifier) {
+      try { recaptchaVerifier.clear(); } catch (_) {}
+      recaptchaVerifier = null;
+    }
+  }
+});
+
+createAccountButton.addEventListener("click", async () => {
+  const username = normalizeUsername(signupUsername.value);
+  const password = signupPassword.value;
+  const code = signupCode.value.trim();
+
+  if (!confirmationResult) {
+    signupStatus.textContent = "Send a phone code first.";
+    return;
+  }
+  if (!validUsername(username) || !usernameAvailable) {
+    signupStatus.textContent = "Choose an available username first.";
+    return;
+  }
+  if (password.length < 8) {
+    signupStatus.textContent = "Use a password with at least 8 characters.";
+    return;
+  }
+  if (code.length < 4) {
+    signupStatus.textContent = "Enter the SMS code.";
+    return;
+  }
+
+  createAccountButton.disabled = true;
+  signupStatus.textContent = "Verifying phone...";
+
+  let reserved = false;
+
+  try {
+    const phoneCredentialResult = await confirmationResult.confirm(code);
+    const user = phoneCredentialResult.user;
+
+    signupStatus.textContent = "Reserving username...";
+    const usernameRef = ref(db, `usernames/${username}`);
+    const tx = await runTransaction(usernameRef, currentValue => {
+      if (currentValue === null) {
+        return {
+          uid: user.uid,
+          createdAt: Date.now()
+        };
+      }
+      return;
+    });
+
+    if (!tx.committed) {
+      usernameAvailable = false;
+      usernameStatus.textContent = "Username is already taken.";
+      signupStatus.textContent = "Username was taken before account creation finished.";
+      return;
+    }
+
+    reserved = true;
+
+    signupStatus.textContent = "Creating password login...";
+    const emailCredential = EmailAuthProvider.credential(usernameToEmail(username), password);
+    await linkWithCredential(user, emailCredential);
+
+    await set(ref(db, `profiles/${user.uid}`), {
+      username,
+      usernameLower: username,
+      phoneVerified: true,
+      createdAt: Date.now()
+    });
+
+    setCookie("gewbar_username", username);
+    loginUsername.value = username;
+    signupStatus.textContent = "Account created. You are logged in.";
+    smoothSlideTo(document.getElementById("composer"), 850);
+  } catch (error) {
+    console.error(error);
+    signupStatus.textContent = error.message;
+
+    if (reserved && auth.currentUser) {
+      try { await remove(ref(db, `usernames/${username}`)); } catch (_) {}
+    }
+
+    createAccountButton.disabled = false;
+  }
+});
+
+loginButton.addEventListener("click", async () => {
+  const username = normalizeUsername(loginUsername.value);
+  const password = loginPassword.value;
+
+  if (!validUsername(username)) {
+    loginStatus.textContent = "Enter a valid username.";
+    return;
+  }
+  if (!password) {
+    loginStatus.textContent = "Enter your password.";
+    return;
+  }
+
+  loginButton.disabled = true;
+  loginStatus.textContent = "Logging in...";
+
+  try {
+    await signInWithEmailAndPassword(auth, usernameToEmail(username), password);
+    setCookie("gewbar_username", username);
+    loginStatus.textContent = "Logged in.";
+    smoothSlideTo(document.getElementById("composer"), 850);
+  } catch (error) {
+    console.error(error);
+    loginStatus.textContent = error.message;
+  } finally {
+    loginButton.disabled = false;
+  }
+});
+
+logoutButton.addEventListener("click", async () => {
+  await signOut(auth);
+  loginStatus.textContent = "Logged out.";
+});
 
 function fileNamesFromInput(input) {
   if (!input.files || !input.files.length) return [];
@@ -878,12 +982,11 @@ function cleanTags(value) {
 form.addEventListener("submit", async event => {
   event.preventDefault();
 
-  if (!currentUser) {
-    postStatus.textContent = "Still connecting to Firebase Auth.";
+  if (!currentUser || !currentProfile) {
+    postStatus.textContent = "Create an account or log in first.";
     return;
   }
 
-  const name = document.getElementById("postName").value.trim().slice(0, 40) || "Builder";
   const title = document.getElementById("postTitle").value.trim().slice(0, 120);
   const body = document.getElementById("postBody").value.trim().slice(0, 5000);
   const tags = cleanTags(document.getElementById("postTags").value);
@@ -901,7 +1004,8 @@ form.addEventListener("submit", async event => {
     const postRef = push(ref(db, "forum/posts"));
     await set(postRef, {
       uid: currentUser.uid,
-      name,
+      username: currentProfile.username,
+      name: currentProfile.username,
       title,
       body,
       tags,
@@ -910,7 +1014,6 @@ form.addEventListener("submit", async event => {
     });
 
     form.reset();
-    document.getElementById("postName").value = name;
     postStatus.textContent = "Posted.";
     smoothSlideTo(document.getElementById("posts"), 850);
   } catch (error) {
@@ -921,102 +1024,34 @@ form.addEventListener("submit", async event => {
   }
 });
 
-function setupRecaptcha() {
-  if (recaptchaVerifier) return recaptchaVerifier;
-
-  recaptchaVerifier = new RecaptchaVerifier(auth, "recaptcha-container", {
-    size: "invisible",
-    callback: () => {
-      phoneStatus.textContent = "reCAPTCHA passed. Sending code...";
-    },
-    "expired-callback": () => {
-      phoneStatus.textContent = "reCAPTCHA expired. Try sending the code again.";
-    }
-  });
-
-  return recaptchaVerifier;
-}
-
-sendCodeButton.addEventListener("click", async () => {
-  const number = phoneNumber.value.trim();
-
-  if (!number.startsWith("+") || number.length < 8) {
-    phoneStatus.textContent = "Use international format, example: +18175551234.";
-    return;
-  }
-
-  sendCodeButton.disabled = true;
-  phoneStatus.textContent = "Sending SMS code...";
-
-  try {
-    const verifier = setupRecaptcha();
-    confirmationResult = await signInWithPhoneNumber(auth, number, verifier);
-    smsCode.disabled = false;
-    verifyCodeButton.disabled = false;
-    phoneStatus.textContent = "Code sent. Enter the SMS code.";
-  } catch (error) {
-    console.error(error);
-    phoneStatus.textContent = error.message;
-    sendCodeButton.disabled = false;
-
-    if (recaptchaVerifier) {
-      try {
-        recaptchaVerifier.clear();
-      } catch (_) {}
-      recaptchaVerifier = null;
-    }
-  }
-});
-
-verifyCodeButton.addEventListener("click", async () => {
-  if (!confirmationResult) {
-    phoneStatus.textContent = "Send a code first.";
-    return;
-  }
-
-  const code = smsCode.value.trim();
-
-  if (code.length < 4) {
-    phoneStatus.textContent = "Enter the SMS verification code.";
-    return;
-  }
-
-  verifyCodeButton.disabled = true;
-  phoneStatus.textContent = "Verifying...";
-
-  try {
-    await confirmationResult.confirm(code);
-    phoneStatus.textContent = "Phone verified.";
-  } catch (error) {
-    console.error(error);
-    phoneStatus.textContent = error.message;
-    verifyCodeButton.disabled = false;
-  }
-});
-
-onAuthStateChanged(auth, user => {
+onAuthStateChanged(auth, async user => {
   currentUser = user;
+  currentProfile = null;
 
   if (user) {
-    authStatus.textContent = "Phone verified";
-    firebaseStatus.textContent = `connected as ${user.uid}`;
-    submitPost.disabled = false;
-    postStatus.textContent = "Ready to post.";
-    phoneAuthBox.classList.add("hidden");
-    loadPinnedPost();
-    loadResources();
-    loadPosts();
+    currentProfile = await getProfile(user.uid);
+    const label = currentProfile?.username || user.phoneNumber || "signed in";
+    authStatus.textContent = label;
+    postAuthStatus.textContent = "Logged in";
+    firebaseStatus.textContent = `connected as ${label}`;
+    submitPost.disabled = !currentProfile;
+    postStatus.textContent = currentProfile ? "Ready to post." : "Account profile missing.";
+    if (currentProfile?.username) {
+      loginUsername.value = currentProfile.username;
+      setCookie("gewbar_username", currentProfile.username);
+    }
   } else {
-    authStatus.textContent = "Phone verification required";
-    firebaseStatus.textContent = "waiting for phone verification";
+    authStatus.textContent = "Not signed in";
+    postAuthStatus.textContent = "Login required";
+    firebaseStatus.textContent = "waiting for login";
     submitPost.disabled = true;
-    postStatus.textContent = "Verify your phone number first.";
-    phoneAuthBox.classList.remove("hidden");
-    loadPinnedPost();
-    loadResources();
-    loadPosts();
+    postStatus.textContent = "Create an account or log in first.";
   }
 });
+
+loadPinnedPost();
+loadResources();
+loadPosts();
 </script>
 </body>
 </html>
