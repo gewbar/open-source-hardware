@@ -436,9 +436,9 @@ function easeInOutCubic(t) {
   return t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
 }
 
-function smoothScrollTo(target, duration = 950) {
+function smoothScrollTo(target, duration = 1250) {
   if (!target) return;
-  const navOffset = 78;
+  const navOffset = 68;
   const start = window.scrollY;
   const end = target.getBoundingClientRect().top + window.scrollY - navOffset;
   const distance = end - start;
@@ -452,7 +452,8 @@ function smoothScrollTo(target, duration = 950) {
   function step(now) {
     const elapsed = now - startTime;
     const progress = Math.min(elapsed / duration, 1);
-    window.scrollTo(0, start + distance * easeInOutCubic(progress));
+    const eased = 1 - Math.pow(1 - progress, 4);
+    window.scrollTo(0, start + distance * eased);
     if (progress < 1) requestAnimationFrame(step);
   }
 
@@ -465,7 +466,7 @@ document.querySelectorAll("a[href^='#']").forEach(link => {
     if (!target) return;
     event.preventDefault();
     smoothScrollTo(target);
-    history.pushState(null, "", link.getAttribute("href"));
+    setTimeout(() => history.pushState(null, "", link.getAttribute("href")), prefersReducedMotion ? 0 : 500);
   });
 });
 
