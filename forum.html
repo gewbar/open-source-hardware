@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-<title>GEWBAR — Forum</title>
+<title>GEWBAR - Forum</title>
 <meta name="description" content="GEWBAR forum for FM-1 builders, CAD files, open-source modifications, build notes, and community posts." />
 <style>
 :root {
@@ -16,7 +16,6 @@
   --panel-2: rgba(255,255,255,.085);
   --warn: rgba(255,255,255,.12);
 }
-
 * { box-sizing: border-box; }
 html { scroll-behavior: auto; scroll-padding-top: 86px; }
 body {
@@ -31,7 +30,6 @@ body.leaving { opacity: .15; transition: opacity .26s ease; }
 a { color: inherit; text-decoration: none; }
 button, input, textarea { font: inherit; }
 button:disabled { opacity: .45; cursor: not-allowed; }
-
 .nav {
   position: fixed;
   top: 0;
@@ -48,11 +46,7 @@ button:disabled { opacity: .45; cursor: not-allowed; }
   border-bottom: 1px solid var(--line);
   transition: height .35s ease, background .35s ease, border-color .35s ease;
 }
-.nav.scrolled {
-  height: 60px;
-  background: rgba(0,0,0,.88);
-  border-bottom-color: rgba(255,255,255,.2);
-}
+.nav.scrolled { height: 60px; background: rgba(0,0,0,.88); border-bottom-color: rgba(255,255,255,.2); }
 .logo { width: 156px; height: auto; display: block; filter: invert(1); }
 .nav-links { display: flex; align-items: center; gap: 24px; font-size: 13px; color: var(--soft); }
 .nav-links a { position: relative; transition: color .22s ease, transform .22s ease; }
@@ -70,7 +64,6 @@ button:disabled { opacity: .45; cursor: not-allowed; }
   transition: transform .26s ease;
 }
 .nav-links a:hover::after, .nav-links a.active::after { transform: scaleX(1); }
-
 .hero {
   padding: 128px clamp(22px, 6vw, 90px) 54px;
   border-bottom: 1px solid var(--line);
@@ -124,7 +117,6 @@ h1 {
 .button.primary { background: var(--white); color: var(--black); }
 .button:hover:not(:disabled) { transform: translateY(-2px); }
 .button:not(.primary):hover:not(:disabled) { background: var(--white); color: var(--black); }
-
 .layout {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 330px;
@@ -133,16 +125,15 @@ h1 {
 }
 .main-column { min-width: 0; }
 .sidebar { position: sticky; top: 88px; align-self: start; display: grid; gap: 16px; }
-.panel, .composer, .post, .sidebar-card, .auth-box {
+.panel, .composer, .post, .sidebar-card {
   border: 1px solid var(--line);
   background: var(--panel);
   border-radius: 30px;
 }
-.panel, .composer, .auth-box { padding: 22px; }
+.panel, .composer { padding: 22px; }
 .panel-title { display: flex; align-items: center; justify-content: space-between; gap: 18px; margin-bottom: 16px; }
 .panel-title h2, .sidebar-card h3 { margin: 0; font-size: 20px; letter-spacing: -.03em; }
 .panel-title span { color: var(--muted); font-size: 13px; }
-
 .pinned {
   padding: 24px;
   margin-bottom: 22px;
@@ -174,7 +165,6 @@ h1 {
 }
 .post h3 { margin: 0 0 10px; font-size: clamp(24px, 3vw, 38px); letter-spacing: -.05em; }
 .post p { color: var(--soft); line-height: 1.58; margin: 0; white-space: pre-wrap; }
-
 .placeholder-box {
   margin-top: 18px;
   padding: 18px;
@@ -195,26 +185,6 @@ h1 {
   background: rgba(255,255,255,.025);
   font-size: 13px;
 }
-
-.auth-box { margin-bottom: 22px; }
-.auth-tabs { display: flex; gap: 8px; margin-bottom: 16px; }
-.tab-button {
-  flex: 1;
-  border: 1px solid var(--line);
-  background: rgba(255,255,255,.035);
-  color: var(--soft);
-  border-radius: 999px;
-  padding: 11px 13px;
-  cursor: pointer;
-  transition: background .22s ease, color .22s ease, border-color .22s ease;
-}
-.tab-button.active {
-  background: var(--white);
-  color: var(--black);
-  border-color: var(--white);
-}
-.auth-panel { display: none; }
-.auth-panel.active { display: grid; gap: 12px; }
 .input, .textarea {
   width: 100%;
   border: 1px solid var(--line);
@@ -227,20 +197,13 @@ h1 {
 }
 .input:focus, .textarea:focus { border-color: rgba(255,255,255,.38); background: rgba(255,255,255,.055); }
 .textarea { min-height: 118px; resize: vertical; }
-.auth-row, .composer-actions { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
-.phone-row { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 10px; }
-#recaptcha-container { min-height: 1px; }
-.hidden { display: none !important; }
-.note, .status { color: var(--muted); font-size: 13px; line-height: 1.5; }
-.forum-login-link { color: var(--white); border-bottom: 1px solid rgba(255,255,255,.45); }
-.status.error { color: rgba(255,255,255,.9); background: var(--warn); border: 1px solid var(--line); padding: 10px 12px; border-radius: 14px; }
-.username-check { min-height: 20px; }
-
 .composer { margin-bottom: 22px; }
 .composer-grid { display: grid; gap: 12px; }
+.composer-actions { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
 .file-input-wrap { position: relative; overflow: hidden; display: inline-flex; }
 .file-input-wrap input { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
-
+.note, .status { color: var(--muted); font-size: 13px; line-height: 1.5; }
+.forum-login-link { color: var(--white); border-bottom: 1px solid rgba(255,255,255,.45); }
 .feed { display: grid; gap: 14px; }
 .post { padding: 22px; transition: transform .22s ease, border-color .22s ease, background .22s ease; }
 .post:hover { transform: translateY(-2px); border-color: rgba(255,255,255,.25); background: var(--panel-2); }
@@ -249,7 +212,6 @@ h1 {
 .meta { color: var(--muted); font-size: 13px; white-space: nowrap; }
 .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
 .tag { border: 1px solid var(--line); border-radius: 999px; padding: 7px 10px; color: var(--soft); font-size: 12px; }
-
 .sidebar-card { padding: 20px; }
 .sidebar-card p { margin: 12px 0 0; color: var(--soft); line-height: 1.5; }
 .category-list { display: grid; gap: 10px; margin-top: 16px; }
@@ -274,7 +236,6 @@ h1 {
   line-height: 1.5;
 }
 .firebase-slot code { color: var(--soft); }
-
 .footer {
   padding: 48px clamp(22px, 6vw, 90px);
   border-top: 1px solid var(--line);
@@ -285,9 +246,7 @@ h1 {
   flex-wrap: wrap;
 }
 .footer img { width: 130px; filter: invert(1); opacity: .9; }
-
 @keyframes rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
-
 @media (max-width: 980px) {
   .layout { grid-template-columns: 1fr; }
   .sidebar { position: static; }
@@ -300,7 +259,7 @@ h1 {
   .post-header, .post-title-row { align-items: flex-start; flex-direction: column; }
 }
 @media (prefers-reduced-motion: reduce) {
-  body, .nav, .nav-links a, .button, .post, .category, .input, .textarea, .tab-button { transition: none !important; }
+  body, .nav, .nav-links a, .button, .post, .category, .input, .textarea { transition: none !important; }
   .eyebrow, h1, .hero p, .actions { animation: none !important; opacity: 1 !important; transform: none !important; }
 }
 </style>
@@ -336,7 +295,6 @@ h1 {
 
 <section class="layout">
 <div class="main-column">
-
 <article class="post pinned" id="pinnedPost">
 <div class="post-header">
 <div class="author">
@@ -355,7 +313,7 @@ h1 {
 <strong>Available Resources</strong>
 <div class="file-drop-preview" id="resourceList">
 <div class="file-line"><span>FM-1_body_files.zip</span><span>coming soon</span></div>
-<div class="file-line"><span>FM-1_build_notes.pdf</span><span>coming soon</span></div> 
+<div class="file-line"><span>FM-1_build_notes.pdf</span><span>coming soon</span></div>
 <div class="file-line"><span>FM-1_KiCad_Files</span><span>coming soon</span></div>
 <div class="file-line"><span>FM-1_full_release.zip</span><span>coming soon</span></div>
 </div>
@@ -370,7 +328,7 @@ h1 {
 <form class="composer-grid" id="postForm">
 <input class="input" id="postTitle" placeholder="Post title" maxlength="120" />
 <textarea class="textarea" id="postBody" placeholder="Share a CAD change, build note, question, finish test, or file update..." maxlength="5000"></textarea>
-<input class="input" id="postTags" placeholder="Tags, separated by commas — CAD, PCB, resin, build kit" maxlength="180" />
+<input class="input" id="postTags" placeholder="Tags, separated by commas - CAD, PCB, resin, build kit" maxlength="180" />
 <div class="composer-actions">
 <label class="button file-input-wrap">
 Attach file names
@@ -389,11 +347,9 @@ Attach file names
 </div>
 <div class="feed" id="feed"></div>
 </section>
-
 </div>
 
 <aside class="sidebar">
-
 <div class="sidebar-card">
 <h3>Account</h3>
 <p id="sidebarAccountStatus">Not signed in.</p>
@@ -415,7 +371,7 @@ Attach file names
 
 <div class="sidebar-card">
 <h3>Firebase status</h3>
-<p>Accounts are handled on login.html. Firebase keeps users signed in locally, and posts use the saved profile username.</p>
+<p>Firebase keeps users signed in locally, and posts use the saved profile username.</p>
 <div class="firebase-slot">
 <code id="firebaseStatus">Initializing Firebase...</code>
 </div>
@@ -434,6 +390,16 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/fireba
 import { getAnalytics, isSupported } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-analytics.js";
 import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
 import { getDatabase, ref, child, get, push, set, onValue } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-database.js";
+
+window.addEventListener("error", event => {
+  const box = document.getElementById("firebaseStatus");
+  if (box) box.textContent = "Page error: " + event.message;
+});
+
+window.addEventListener("unhandledrejection", event => {
+  const box = document.getElementById("firebaseStatus");
+  if (box) box.textContent = "Async error: " + (event.reason?.message || event.reason);
+});
 
 const firebaseConfig = {
   apiKey: "AIzaSyCeMTlQ2ntBKvL4uEffSA7E5P6TsCyzC4I",
@@ -461,7 +427,6 @@ const authStatus = document.getElementById("authStatus");
 const postAuthStatus = document.getElementById("postAuthStatus");
 const firebaseStatus = document.getElementById("firebaseStatus");
 const sidebarAccountStatus = document.getElementById("sidebarAccountStatus");
-
 const form = document.getElementById("postForm");
 const postStatus = document.getElementById("postStatus");
 const submitPost = document.getElementById("submitPost");
@@ -469,11 +434,203 @@ const submitPost = document.getElementById("submitPost");
 let currentUser = null;
 let currentProfile = null;
 
-window.addEventListener("load", () => {});
+function smoothSlideTo(target, duration = 1250) {
+  if (!target) return;
+  const offset = 68;
+  const start = window.scrollY;
+  const end = target.getBoundingClientRect().top + window.scrollY - offset;
+  const distance = end - start;
+  const startTime = performance.now();
 
+  if (prefersReducedMotion) {
+    window.scrollTo(0, end);
+    return;
+  }
 
+  function step(now) {
+    const elapsed = now - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+    const eased = 1 - Math.pow(1 - progress, 4);
+    window.scrollTo(0, start + distance * eased);
+    if (progress < 1) requestAnimationFrame(step);
+  }
 
+  requestAnimationFrame(step);
+}
 
+document.querySelectorAll("a[href^='#']").forEach(link => {
+  link.addEventListener("click", event => {
+    const target = document.querySelector(link.getAttribute("href"));
+    if (!target) return;
+    event.preventDefault();
+    smoothSlideTo(target);
+    setTimeout(() => history.pushState(null, "", link.getAttribute("href")), prefersReducedMotion ? 0 : 500);
+  });
+});
+
+document.querySelectorAll("[data-page-link]").forEach(link => {
+  link.addEventListener("click", event => {
+    const href = link.getAttribute("href");
+    if (!href || href.startsWith("#") || prefersReducedMotion) return;
+    event.preventDefault();
+    document.body.classList.add("leaving");
+    setTimeout(() => { window.location.href = href; }, 260);
+  });
+});
+
+function updateNav() {
+  if (nav) nav.classList.toggle("scrolled", window.scrollY > 24);
+}
+window.addEventListener("scroll", updateNav, { passive: true });
+updateNav();
+
+function escapeHtml(value) {
+  return String(value || "").replace(/[&<>"']/g, char => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#039;"
+  }[char]));
+}
+
+function formatDate(value) {
+  if (!value || typeof value !== "number") return "just now";
+  return new Intl.DateTimeFormat(undefined, { month: "short", day: "numeric", hour: "numeric", minute: "2-digit" }).format(new Date(value));
+}
+
+function listFromFirebaseValue(value) {
+  if (Array.isArray(value)) return value;
+  if (value && typeof value === "object") return Object.values(value);
+  return [];
+}
+
+function renderTags(tags) {
+  const safeTags = listFromFirebaseValue(tags).filter(Boolean);
+  const visibleTags = safeTags.length ? safeTags : ["community"];
+  return visibleTags.slice(0, 8).map(tag => `<span class="tag">${escapeHtml(tag)}</span>`).join("");
+}
+
+function renderFiles(fileNames) {
+  const names = listFromFirebaseValue(fileNames).filter(Boolean);
+  if (!names.length) return "";
+  return `
+    <div class="placeholder-box">
+      <strong>Attached file names</strong>
+      <div class="file-drop-preview">
+        ${names.slice(0, 8).map(name => `<div class="file-line"><span>${escapeHtml(name)}</span><span>name only</span></div>`).join("")}
+      </div>
+    </div>
+  `;
+}
+
+function renderPost(post) {
+  const article = document.createElement("article");
+  article.className = "post";
+  article.innerHTML = `
+    <div class="post-title-row">
+      <h3>${escapeHtml(post.title || "Untitled post")}</h3>
+      <span class="meta">${escapeHtml(post.username || post.name || "Builder")} · ${formatDate(post.createdAt)}</span>
+    </div>
+    <p>${escapeHtml(post.body)}</p>
+    ${renderFiles(post.fileNames)}
+    <div class="tags">${renderTags(post.tags)}</div>
+  `;
+  return article;
+}
+
+function loadPinnedPost() {
+  onValue(ref(db, "forum/pinned"), snapshot => {
+    const pinned = snapshot.val();
+    if (!pinned) return;
+    document.getElementById("pinnedAuthor").textContent = pinned.author || "Goober";
+    document.getElementById("pinnedTitle").textContent = pinned.title || "Welcome to the build forum.";
+    document.getElementById("pinnedBody").textContent = pinned.body || "";
+
+    const files = listFromFirebaseValue(pinned.files);
+    if (files.length) {
+      const resourceList = document.getElementById("resourceList");
+      resourceList.innerHTML = "";
+      files.slice(0, 12).forEach(file => {
+        const line = document.createElement("div");
+        line.className = "file-line";
+        const name = typeof file === "string" ? file : file.name || "Untitled resource";
+        const status = typeof file === "string" ? "resource" : file.status || "resource";
+        line.innerHTML = `<span>${escapeHtml(name)}</span><span>${escapeHtml(status)}</span>`;
+        resourceList.appendChild(line);
+      });
+    }
+  }, error => {
+    firebaseStatus.textContent = "Pinned post blocked: " + error.message;
+  });
+}
+
+function loadResources() {
+  onValue(ref(db, "forum/resources"), snapshot => {
+    const resources = listFromFirebaseValue(snapshot.val());
+    if (!resources.length) return;
+    const resourceList = document.getElementById("resourceList");
+    resourceList.innerHTML = "";
+    resources.slice(0, 12).forEach(resource => {
+      const line = document.createElement("div");
+      line.className = "file-line";
+      const name = typeof resource === "string" ? resource : resource.name || "Untitled resource";
+      const url = typeof resource === "object" ? resource.url : "";
+      line.innerHTML = url
+        ? `<a href="${escapeHtml(url)}" target="_blank" rel="noopener">${escapeHtml(name)}</a><span>open</span>`
+        : `<span>${escapeHtml(name)}</span><span>coming soon</span>`;
+      resourceList.appendChild(line);
+    });
+  }, error => {
+    firebaseStatus.textContent = "Resources blocked: " + error.message;
+  });
+}
+
+function loadPosts() {
+  onValue(ref(db, "forum/posts"), snapshot => {
+    const data = snapshot.val();
+    feed.innerHTML = "";
+
+    if (!data) {
+      postCount.textContent = "No posts yet";
+      feed.innerHTML = `
+        <article class="post">
+          <div class="post-title-row">
+            <h3>No posts yet</h3>
+            <span class="meta">waiting for builders</span>
+          </div>
+          <p>Be the first to post a CAD change, build note, or question.</p>
+          <div class="tags"><span class="tag">community</span></div>
+        </article>
+      `;
+      return;
+    }
+
+    const posts = Object.entries(data)
+      .map(([id, post]) => ({ id, ...post }))
+      .sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
+
+    posts.slice(0, 50).forEach(post => feed.appendChild(renderPost(post)));
+    postCount.textContent = `${posts.length} visible post${posts.length === 1 ? "" : "s"}`;
+  }, error => {
+    postCount.textContent = "Could not load posts";
+    feed.innerHTML = `
+      <article class="post">
+        <div class="post-title-row">
+          <h3>Database read blocked</h3>
+          <span class="meta">check rules</span>
+        </div>
+        <p>${escapeHtml(error.message)}</p>
+        <div class="tags"><span class="tag">firebase</span><span class="tag">rules</span></div>
+      </article>
+    `;
+  });
+}
+
+async function getProfile(uid) {
+  const snap = await get(child(ref(db), `profiles/${uid}`));
+  return snap.exists() ? snap.val() : null;
+}
 
 function fileNamesFromInput(input) {
   if (!input.files || !input.files.length) return [];
@@ -530,7 +687,7 @@ form.addEventListener("submit", async event => {
     console.error(error);
     postStatus.textContent = error.message;
   } finally {
-    submitPost.disabled = !currentUser;
+    submitPost.disabled = !currentUser || !currentProfile;
   }
 });
 
@@ -539,15 +696,22 @@ onAuthStateChanged(auth, async user => {
   currentProfile = null;
 
   if (user) {
-    currentProfile = await getProfile(user.uid);
+    try {
+      currentProfile = await getProfile(user.uid);
+    } catch (error) {
+      console.error(error);
+      firebaseStatus.textContent = "Profile read blocked: " + error.message;
+    }
+
     const label = currentProfile?.displayName || currentProfile?.username || user.phoneNumber || "signed in";
     if (authStatus) authStatus.textContent = label;
-    postAuthStatus.textContent = "Logged in";
-    firebaseStatus.textContent = `connected as ${label}`;
+    postAuthStatus.textContent = currentProfile ? "Logged in" : "Profile missing";
+    if (!firebaseStatus.textContent.startsWith("Profile read blocked")) {
+      firebaseStatus.textContent = `connected as ${label}`;
+    }
     sidebarAccountStatus.textContent = `Signed in as ${label}.`;
     submitPost.disabled = !currentProfile;
-    postStatus.textContent = currentProfile ? "Ready to post." : "Account profile missing.";
-
+    postStatus.textContent = currentProfile ? "Ready to post." : "Account profile missing. Open the account page and finish signup.";
   } else {
     if (authStatus) authStatus.textContent = "Not signed in";
     postAuthStatus.textContent = "Login required";
