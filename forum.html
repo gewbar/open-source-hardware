@@ -446,6 +446,7 @@ auth.useDeviceLanguage();
 const db = getDatabase(app);
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const nicknameStorageKey = "gewbar_forum_nickname";
+const reservedNicknames = new Set(["gewbar", "goober"]);
 
 const nav = document.querySelector(".nav");
 const feed = document.getElementById("feed");
@@ -549,8 +550,21 @@ function currentNickname() {
   return cleanNickname(nicknameInput.value);
 }
 
+function nicknameKey(value) {
+  return cleanNickname(value).toLowerCase();
+}
+
+function isReservedNickname(value) {
+  return reservedNicknames.has(nicknameKey(value));
+}
+
 function updateNicknameStatus() {
   const nickname = currentNickname();
+  if (nickname && isReservedNickname(nickname)) {
+    postAuthStatus.textContent = "Nickname unavailable";
+    sidebarAccountStatus.textContent = "That nickname is reserved by GEWBAR.";
+    return;
+  }
   postAuthStatus.textContent = nickname ? `Posting as ${nickname}` : "Nickname only";
   sidebarAccountStatus.textContent = nickname
     ? `Posting and replying as ${nickname}.`
@@ -769,6 +783,12 @@ form.addEventListener("submit", async event => {
     return;
   }
 
+  if (isReservedNickname(nickname)) {
+    postStatus.textContent = "That nickname is reserved by GEWBAR.";
+    nicknameInput.focus();
+    return;
+  }
+
   if (!title || !body) {
     postStatus.textContent = "Add a title and message first.";
     return;
@@ -822,6 +842,11 @@ feed.addEventListener("submit", async event => {
   if (!postId) return;
   if (!nickname || nickname.length < 2) {
     status.textContent = "Add a nickname first.";
+    nicknameField.focus();
+    return;
+  }
+  if (isReservedNickname(nickname)) {
+    status.textContent = "That nickname is reserved by GEWBAR.";
     nicknameField.focus();
     return;
   }
