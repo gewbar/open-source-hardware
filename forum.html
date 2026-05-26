@@ -360,8 +360,8 @@ h1 {
 Attach file names
 <input id="postFiles" type="file" multiple />
 </label>
-<button class="button primary" id="submitPost" type="submit">Post to forum</button>
-<span class="note" id="postStatus">Ready when you add a nickname, title, and message.</span>
+<button class="button primary" id="submitPost" type="submit" disabled>Post to forum</button>
+<span class="note" id="postStatus">Connecting to Firebase...</span>
 </div>
 </form>
 </section>
@@ -463,6 +463,7 @@ let currentUser = null;
 
 nicknameInput.value = loadNickname();
 updateNicknameStatus();
+updateAuthReadyUI();
 
 function smoothSlideTo(target, duration = 1250) {
   if (!target) return;
@@ -556,6 +557,29 @@ function nicknameKey(value) {
 
 function isReservedNickname(value) {
   return reservedNicknames.has(nicknameKey(value));
+}
+
+function authReady() {
+  return Boolean(currentUser?.uid);
+}
+
+function updateAuthReadyUI() {
+  submitPost.disabled = !authReady();
+  if (!authReady()) {
+    postStatus.textContent = "Connecting to Firebase...";
+  } else if (postStatus.textContent === "Connecting to Firebase...") {
+    postStatus.textContent = "Ready when you add a nickname, title, and message.";
+  }
+  document.querySelectorAll(".reply-form button").forEach(button => {
+    button.disabled = !authReady();
+  });
+  document.querySelectorAll(".reply-status").forEach(status => {
+    if (!authReady()) {
+      status.textContent = "Connecting to Firebase...";
+    } else if (status.textContent === "Connecting to Firebase...") {
+      status.textContent = "Replies appear under this post.";
+    }
+  });
 }
 
 function updateNicknameStatus() {
@@ -658,11 +682,13 @@ function renderPost(post) {
         <textarea class="textarea reply-body" placeholder="Reply to this message..." maxlength="2000"></textarea>
         <div class="reply-actions">
           <button class="button" type="submit">Reply</button>
-          <span class="reply-status">Replies appear under this post.</span>
+          <span class="reply-status">${authReady() ? "Replies appear under this post." : "Connecting to Firebase..."}</span>
         </div>
       </form>
     </div>
   `;
+  const replyButton = article.querySelector(".reply-form button");
+  if (replyButton) replyButton.disabled = !authReady();
   return article;
 }
 
@@ -783,6 +809,12 @@ form.addEventListener("submit", async event => {
     return;
   }
 
+  if (!authReady()) {
+    postStatus.textContent = "Still connecting to Firebase. Try again in a moment.";
+    updateAuthReadyUI();
+    return;
+  }
+
   if (isReservedNickname(nickname)) {
     postStatus.textContent = "That nickname is reserved by GEWBAR.";
     nicknameInput.focus();
@@ -800,7 +832,7 @@ form.addEventListener("submit", async event => {
   try {
     const postRef = push(ref(db, "forum/posts"));
     await set(postRef, {
-      uid: currentUser?.uid || "visitor",
+      uid: currentUser.uid,
       nickname,
       username: nickname,
       name: nickname,
@@ -821,7 +853,7 @@ form.addEventListener("submit", async event => {
     console.error(error);
     postStatus.textContent = error.message;
   } finally {
-    submitPost.disabled = false;
+    submitPost.disabled = !authReady();
   }
 });
 
@@ -840,6 +872,11 @@ feed.addEventListener("submit", async event => {
   const body = bodyField.value.trim().slice(0, 2000);
 
   if (!postId) return;
+  if (!authReady()) {
+    status.textContent = "Still connecting to Firebase. Try again in a moment.";
+    updateAuthReadyUI();
+    return;
+  }
   if (!nickname || nickname.length < 2) {
     status.textContent = "Add a nickname first.";
     nicknameField.focus();
@@ -865,7 +902,7 @@ feed.addEventListener("submit", async event => {
   try {
     const replyRef = push(ref(db, `forum/posts/${postId}/replies`));
     await set(replyRef, {
-      uid: currentUser?.uid || "visitor",
+      uid: currentUser.uid,
       nickname,
       username: nickname,
       body,
@@ -877,14 +914,15 @@ feed.addEventListener("submit", async event => {
     console.error(error);
     status.textContent = error.message;
   } finally {
-    button.disabled = false;
+    button.disabled = !authReady();
   }
 });
 
 onAuthStateChanged(auth, user => {
   currentUser = user;
-  firebaseStatus.textContent = user ? "connected for public posting" : "public posting ready";
+  firebaseStatus.textContent = user ? "connected for public posting" : "connecting to public posting";
   updateNicknameStatus();
+  updateAuthReadyUI();
 });
 
 signInAnonymously(auth).catch(error => {
